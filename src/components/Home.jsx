@@ -2,8 +2,34 @@ import React from "react";
 import pattern from "../assets/pattern-bg-desktop.png";
 import patternMobile from "../assets/pattern-bg-mobile.png";
 import icon from "../assets/icon-arrow.svg";
+import { useEffect, useState } from "react";
 
 const Home = () => {
+  const [ipData, setIpData] = useState(null);
+  const [error, setError] = useState(null);
+
+useEffect(() => {
+  const fetchIPInfo = async () => {
+    try {
+      const response = await fetch(
+        "https://geo.ipify.org/api/v2/country,city?apiKey=at_e5EfkzD7i4YlSogCiCDdWutClkVtW"
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch IP data");
+      }
+
+      const data = await response.json();
+      setIpData(data);
+      console.log(data);
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
+  fetchIPInfo();
+}, []);
+  
   return (
     <>
       <div className="relative">
