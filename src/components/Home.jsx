@@ -8,6 +8,7 @@ import L from "leaflet";
 import iconUrl from "leaflet/dist/images/marker-icon.png";
 import iconShadow from "leaflet/dist/images/marker-shadow.png";
 
+
 let DefaultIcon = L.icon({
   iconUrl,
   shadowUrl: iconShadow,
@@ -20,7 +21,9 @@ const Home = () => {
   const [error, setError] = useState(null);
   const [query, setQuery] = useState("");
 
-  const API_KEY = "at_e5EfkzD7i4YlSogCiCDdWutClkVtW";
+  // const API_KEY = "at_e5EfkzD7i4YlSogCiCDdWutClkVtW";
+  const API_KEY = import.meta.env.VITE_IPIFY_API_KEY;
+
 
   const fetchIPInfo = async () => {
     try {
